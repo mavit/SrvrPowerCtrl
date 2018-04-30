@@ -164,11 +164,7 @@ spc_get_slim_localrepo(){
 spc_get_slim_username(){
 	spc_get_slim_pid
 	if [ ! -z "$SLIMSERVICEPID" ]; then
-		SLIMUSERID=$(ps -fp "$SLIMSERVICEPID" | grep -v 'UID' | sed -n -e 's/^\([[:alnum:]]*\)[[:blank:]]*.*$/\1/p')
-	fi
-
-	if [ ! -z "$SLIMUSERID" ]; then
-		SLIMUSERNAME=$(getent passwd "$SLIMUSERID" | sed -n -e 's/^\([[:alnum:]]*\):.*$/\1/p')
+		SLIMUSERNAME=$(ps -o user= -p "$SLIMSERVICEPID")
 	else
 		SLIMUSERNAME='squeezeboxserver'
 	fi
