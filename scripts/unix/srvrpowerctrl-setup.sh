@@ -182,7 +182,7 @@ fixup_sudoers(){
 	#Tack on permission for the lms user to run these commands sans password prompt..
 	if [ $(systemctl 2>&1 | grep -c '\-\.mount') -gt 0 ]; then	
 		SYSTEMCTL="$(which systemctl)"
-		for CMD in "${SYSTEMCTL} poweroff" "${SYSTEMCTL} suspend" "${SYSTEMCTL} hibernate" "${SYSTEMCTL} hibrid-sleep" "${SYSTEMCTL} reboot" "$(which crontab) -l"
+		for CMD in "${SYSTEMCTL} poweroff" "${SYSTEMCTL} suspend" "${SYSTEMCTL} hibernate" "${SYSTEMCTL} hybrid-sleep" "${SYSTEMCTL} reboot" "$(which crontab) -l"
 		do
 			RE="${SLIMUSERNAME}.*${CMD}"
 			FOUNDSTR=$(grep -E "$RE" "$SUDOERS")
